@@ -160,7 +160,7 @@
             // createTournamentButton
             // 
             createTournamentButton.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
-            createTournamentButton.Location = new Point(381, 501);
+            createTournamentButton.Location = new Point(257, 501);
             createTournamentButton.Margin = new Padding(2);
             createTournamentButton.Name = "createTournamentButton";
             createTournamentButton.Size = new Size(265, 49);

@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TrackerLibrary
+namespace TrackerLibrary.Models
 {
     public class MatchupEntry
     {
-        public TeamModel TeamCompiting {  get; set; }
+        public TeamModel TeamCompiting { get; set; }
         public double Score { get; set; }
         public MatchupModel ParentMatchup { get; set; }
 

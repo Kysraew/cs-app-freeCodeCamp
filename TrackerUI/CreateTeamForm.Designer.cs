@@ -32,20 +32,20 @@
             teamNameTextBox = new TextBox();
             teamNameLabel = new Label();
             selectTeamMemeberLabel = new Label();
-            teamsDropDown = new ComboBox();
+            selectTeamMemberDropDown = new ComboBox();
             addPlayerButton = new Button();
             groupBox1 = new GroupBox();
-            firstNameTextBox = new TextBox();
-            firstNameLabel = new Label();
-            lastNameTextBox = new TextBox();
-            lastNameLabel = new Label();
+            createPlayerButton = new Button();
             cellphoneNumberTextBox = new TextBox();
             cellphoneNumberLabel = new Label();
             emailTextBox = new TextBox();
             emailLabel = new Label();
-            createPlayerButton = new Button();
+            lastNameTextBox = new TextBox();
+            lastNameLabel = new Label();
+            firstNameTextBox = new TextBox();
+            firstNameLabel = new Label();
             teamMemberListBox = new ListBox();
-            deleteMembersButton = new Button();
+            removeMembersButton = new Button();
             createTeamButton = new Button();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -60,7 +60,6 @@
             headerLabel.Size = new Size(218, 47);
             headerLabel.TabIndex = 2;
             headerLabel.Text = "Create Team";
-            headerLabel.Click += headerLabel_Click;
             // 
             // teamNameTextBox
             // 
@@ -71,7 +70,6 @@
             teamNameTextBox.Name = "teamNameTextBox";
             teamNameTextBox.Size = new Size(194, 29);
             teamNameTextBox.TabIndex = 12;
-            teamNameTextBox.TextChanged += tournamentNameTextBox_TextChanged;
             // 
             // teamNameLabel
             // 
@@ -83,7 +81,6 @@
             teamNameLabel.Size = new Size(112, 25);
             teamNameLabel.TabIndex = 11;
             teamNameLabel.Text = "Team name:";
-            teamNameLabel.Click += tournamentNameLabel_Click;
             // 
             // selectTeamMemeberLabel
             // 
@@ -96,15 +93,15 @@
             selectTeamMemeberLabel.TabIndex = 13;
             selectTeamMemeberLabel.Text = "Select team memeber:";
             // 
-            // teamsDropDown
+            // selectTeamMemberDropDown
             // 
-            teamsDropDown.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            teamsDropDown.FormattingEnabled = true;
-            teamsDropDown.Location = new Point(62, 170);
-            teamsDropDown.Margin = new Padding(2);
-            teamsDropDown.Name = "teamsDropDown";
-            teamsDropDown.Size = new Size(194, 33);
-            teamsDropDown.TabIndex = 14;
+            selectTeamMemberDropDown.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            selectTeamMemberDropDown.FormattingEnabled = true;
+            selectTeamMemberDropDown.Location = new Point(62, 170);
+            selectTeamMemberDropDown.Margin = new Padding(2);
+            selectTeamMemberDropDown.Name = "selectTeamMemberDropDown";
+            selectTeamMemberDropDown.Size = new Size(194, 33);
+            selectTeamMemberDropDown.TabIndex = 14;
             // 
             // addPlayerButton
             // 
@@ -116,6 +113,7 @@
             addPlayerButton.TabIndex = 17;
             addPlayerButton.Text = "Add player";
             addPlayerButton.UseVisualStyleBackColor = true;
+            addPlayerButton.Click += addPlayerButton_Click;
             // 
             // groupBox1
             // 
@@ -136,47 +134,17 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Add new memeber";
             // 
-            // firstNameTextBox
+            // createPlayerButton
             // 
-            firstNameTextBox.BorderStyle = BorderStyle.FixedSingle;
-            firstNameTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            firstNameTextBox.Location = new Point(155, 44);
-            firstNameTextBox.Margin = new Padding(2);
-            firstNameTextBox.Name = "firstNameTextBox";
-            firstNameTextBox.Size = new Size(171, 29);
-            firstNameTextBox.TabIndex = 10;
-            // 
-            // firstNameLabel
-            // 
-            firstNameLabel.AutoSize = true;
-            firstNameLabel.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            firstNameLabel.Location = new Point(38, 44);
-            firstNameLabel.Margin = new Padding(2, 0, 2, 0);
-            firstNameLabel.Name = "firstNameLabel";
-            firstNameLabel.Size = new Size(103, 25);
-            firstNameLabel.TabIndex = 9;
-            firstNameLabel.Text = "First name:";
-            // 
-            // lastNameTextBox
-            // 
-            lastNameTextBox.BorderStyle = BorderStyle.FixedSingle;
-            lastNameTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lastNameTextBox.Location = new Point(155, 93);
-            lastNameTextBox.Margin = new Padding(2);
-            lastNameTextBox.Name = "lastNameTextBox";
-            lastNameTextBox.Size = new Size(171, 29);
-            lastNameTextBox.TabIndex = 12;
-            // 
-            // lastNameLabel
-            // 
-            lastNameLabel.AutoSize = true;
-            lastNameLabel.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            lastNameLabel.Location = new Point(38, 93);
-            lastNameLabel.Margin = new Padding(2, 0, 2, 0);
-            lastNameLabel.Name = "lastNameLabel";
-            lastNameLabel.Size = new Size(101, 25);
-            lastNameLabel.TabIndex = 11;
-            lastNameLabel.Text = "Last name:";
+            createPlayerButton.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            createPlayerButton.Location = new Point(106, 229);
+            createPlayerButton.Margin = new Padding(2);
+            createPlayerButton.Name = "createPlayerButton";
+            createPlayerButton.Size = new Size(145, 35);
+            createPlayerButton.TabIndex = 19;
+            createPlayerButton.Text = "Create player";
+            createPlayerButton.UseVisualStyleBackColor = true;
+            createPlayerButton.Click += createPlayerButton_Click;
             // 
             // cellphoneNumberTextBox
             // 
@@ -220,17 +188,47 @@
             emailLabel.TabIndex = 13;
             emailLabel.Text = "Email:";
             // 
-            // createPlayerButton
+            // lastNameTextBox
             // 
-            createPlayerButton.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            createPlayerButton.Location = new Point(106, 229);
-            createPlayerButton.Margin = new Padding(2);
-            createPlayerButton.Name = "createPlayerButton";
-            createPlayerButton.Size = new Size(145, 35);
-            createPlayerButton.TabIndex = 19;
-            createPlayerButton.Text = "Create player";
-            createPlayerButton.UseVisualStyleBackColor = true;
-            createPlayerButton.Click += createPlayerButton_Click;
+            lastNameTextBox.BorderStyle = BorderStyle.FixedSingle;
+            lastNameTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lastNameTextBox.Location = new Point(155, 93);
+            lastNameTextBox.Margin = new Padding(2);
+            lastNameTextBox.Name = "lastNameTextBox";
+            lastNameTextBox.Size = new Size(171, 29);
+            lastNameTextBox.TabIndex = 12;
+            // 
+            // lastNameLabel
+            // 
+            lastNameLabel.AutoSize = true;
+            lastNameLabel.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            lastNameLabel.Location = new Point(38, 93);
+            lastNameLabel.Margin = new Padding(2, 0, 2, 0);
+            lastNameLabel.Name = "lastNameLabel";
+            lastNameLabel.Size = new Size(101, 25);
+            lastNameLabel.TabIndex = 11;
+            lastNameLabel.Text = "Last name:";
+            // 
+            // firstNameTextBox
+            // 
+            firstNameTextBox.BorderStyle = BorderStyle.FixedSingle;
+            firstNameTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            firstNameTextBox.Location = new Point(155, 44);
+            firstNameTextBox.Margin = new Padding(2);
+            firstNameTextBox.Name = "firstNameTextBox";
+            firstNameTextBox.Size = new Size(171, 29);
+            firstNameTextBox.TabIndex = 10;
+            // 
+            // firstNameLabel
+            // 
+            firstNameLabel.AutoSize = true;
+            firstNameLabel.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            firstNameLabel.Location = new Point(38, 44);
+            firstNameLabel.Margin = new Padding(2, 0, 2, 0);
+            firstNameLabel.Name = "firstNameLabel";
+            firstNameLabel.Size = new Size(103, 25);
+            firstNameLabel.TabIndex = 9;
+            firstNameLabel.Text = "First name:";
             // 
             // teamMemberListBox
             // 
@@ -241,16 +239,17 @@
             teamMemberListBox.Size = new Size(258, 439);
             teamMemberListBox.TabIndex = 19;
             // 
-            // deleteMembersButton
+            // removeMembersButton
             // 
-            deleteMembersButton.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            deleteMembersButton.Location = new Point(677, 270);
-            deleteMembersButton.Margin = new Padding(2);
-            deleteMembersButton.Name = "deleteMembersButton";
-            deleteMembersButton.Size = new Size(101, 68);
-            deleteMembersButton.TabIndex = 22;
-            deleteMembersButton.Text = "Delete Selected";
-            deleteMembersButton.UseVisualStyleBackColor = true;
+            removeMembersButton.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            removeMembersButton.Location = new Point(677, 270);
+            removeMembersButton.Margin = new Padding(2);
+            removeMembersButton.Name = "removeMembersButton";
+            removeMembersButton.Size = new Size(101, 68);
+            removeMembersButton.TabIndex = 22;
+            removeMembersButton.Text = "Remove Selected";
+            removeMembersButton.UseVisualStyleBackColor = true;
+            removeMembersButton.Click += removeMembersButton_Click;
             // 
             // createTeamButton
             // 
@@ -269,11 +268,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(784, 644);
             Controls.Add(createTeamButton);
-            Controls.Add(deleteMembersButton);
+            Controls.Add(removeMembersButton);
             Controls.Add(teamMemberListBox);
             Controls.Add(groupBox1);
             Controls.Add(addPlayerButton);
-            Controls.Add(teamsDropDown);
+            Controls.Add(selectTeamMemberDropDown);
             Controls.Add(selectTeamMemeberLabel);
             Controls.Add(teamNameTextBox);
             Controls.Add(teamNameLabel);
@@ -292,7 +291,7 @@
         private TextBox teamNameTextBox;
         private Label teamNameLabel;
         private Label selectTeamMemeberLabel;
-        private ComboBox teamsDropDown;
+        private ComboBox selectTeamMemberDropDown;
         private Button addPlayerButton;
         private GroupBox groupBox1;
         private TextBox firstNameTextBox;
@@ -305,7 +304,7 @@
         private TextBox lastNameTextBox;
         private Label lastNameLabel;
         private ListBox teamMemberListBox;
-        private Button deleteMembersButton;
+        private Button removeMembersButton;
         private Button createTeamButton;
     }
 }

@@ -101,6 +101,7 @@
             Controls.Add(headerLabel);
             Name = "TournamentDashboard";
             Text = "TournamentDashboard";
+            Load += TournamentDashboard_Load;
             ResumeLayout(false);
             PerformLayout();
         }
