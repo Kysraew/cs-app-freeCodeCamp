@@ -14,13 +14,17 @@ namespace TrackerUI
 {
     public partial class CreateTeamForm : Form
     {
+        ITeamRequester callingForm;
+
         private BindingList<PersonModel> aviliableTeamMembers = new BindingList<PersonModel>(GlobalConfig.Connection.GetPersonAll());
         private BindingList<PersonModel> selectedTeamMembers = new BindingList<PersonModel>();
 
+        public CreateTeamForm(ITeamRequester requester)
+        {   
+            callingForm = requester;
 
-        public CreateTeamForm()
-        {
             //CreateSampleData();
+
             InitializeComponent();
             WireUpLists();
         }
@@ -102,11 +106,25 @@ namespace TrackerUI
         {
             PersonModel? p = (PersonModel?)teamMemberListBox.SelectedItem;
 
-            if(p != null)
+            if (p != null)
             {
                 selectedTeamMembers.Remove(p);
                 aviliableTeamMembers.Add(p);
             }
+        }
+
+        private void createTeamButton_Click(object sender, EventArgs e)
+        {
+            TeamModel t = new TeamModel();
+
+            t.TeamName = teamNameTextBox.Text;
+            t.TeamMembers = new List<PersonModel>(selectedTeamMembers);
+
+            t = GlobalConfig.Connection.CreateTeam(t);
+
+            callingForm.TeamComplete(t);
+            this.Close();
+            //TODO - If we arent closing this form after craetin reset the form
         }
     }
 }

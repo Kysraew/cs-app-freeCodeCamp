@@ -64,6 +64,35 @@ namespace TrackerLibrary.DataAccess.TextHelpers
             return output;
         }
 
+        public static List<TeamModel> ConvertToTeamModels(this List<string> lines, string peopleFile)
+        {
+            List<TeamModel> output = new List<TeamModel>();
+            List<PersonModel> people = peopleFile.FullFilePath().LoadFile().ConvertToPersonModels();
+
+            foreach (string line in lines)
+            {
+                string[] cols = line.Split(',');
+
+                TeamModel p = new TeamModel();
+                p.Id = int.Parse(cols[0]);
+                p.TeamName = cols[1];
+
+                string[] PersonIds = cols[2].Split('|');
+               
+                foreach (string personId in PersonIds)
+                {
+                    p.TeamMembers.Add(people.Where(x => x.Id == int.Parse(personId)).First());
+                }
+
+                //Alternative when we allow that id is not on the list
+                //p.TeamMembers.AddRange(people.Where(x => PersonIds.Contains(x.ToString())));
+
+                output.Add(p);
+            }
+
+            return output;
+        }
+        
         public static void SaveToPrizeFile(this List<PrizeModel> models, string fileName)
         {
             List<string> lines = new List<string>();
@@ -86,6 +115,34 @@ namespace TrackerLibrary.DataAccess.TextHelpers
             }
 
             File.WriteAllLines(fileName.FullFilePath(), lines);
+        }
+
+        public static void SaveToTeamFile(this List<TeamModel> models, string fileName)
+        {
+            List<string> lines = new List<string>();
+
+            foreach (TeamModel p in models)
+            {
+                StringBuilder memberIds = new StringBuilder();
+
+                if (p.TeamMembers.Count > 0)
+                {
+                    foreach (PersonModel personModel in p.TeamMembers)
+                    {
+                        memberIds.Append($"{personModel.Id}|");
+                    }
+                    memberIds.Remove(memberIds.Length - 1, 1);
+                }
+                
+                lines.Add($"{p.Id},{p.TeamName},{memberIds.ToString()}");
+            }
+
+            File.WriteAllLines(fileName.FullFilePath(), lines);
+        }
+
+        public static int LineToId(this string line)
+        {
+            return int.Parse(line.Split(',')[0]);
         }
     }
 
